@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>emaancodes — Web & App Developer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,600;0,9..144,700&family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;1,500&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#FFFFFF;
+    --bg-soft:#FAF8FD;
+    --ink:#1C1626;
+    --ink-soft:#665C77;
+    --magenta:#E0228A;
+    --violet:#6E2FD9;
+    --violet-soft:#F1ECFB;
+    --pop:#FFC93C;
+    --line:rgba(28,22,38,0.10);
+    --shadow:0 4px 16px rgba(28,22,38,0.06);
+    --shadow-lift:0 16px 36px rgba(110,47,217,0.14);
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0; background:var(--bg); color:var(--ink);
+    font-family:'Plus Jakarta Sans', sans-serif;
+    -webkit-font-smoothing:antialiased;
+  }
+  @media (prefers-reduced-motion: reduce){ *{animation:none !important; transition:none !important;} }
+  a{color:inherit;}
+  h1,h2,h3{font-family:'Fraunces', serif; margin:0; letter-spacing:-0.01em; font-weight:600;}
+  .mono{font-family:'Space Mono', monospace;}
+  .wrap{max-width:1100px; margin:0 auto; padding:0 32px;}
+  .accent{background:linear-gradient(100deg, var(--violet), var(--magenta)); -webkit-background-clip:text; background-clip:text; color:transparent;}
+
+  /* nav */
+  nav{position:sticky; top:0; z-index:50; background:rgba(255,255,255,0.92); backdrop-filter:blur(8px); border-bottom:1px solid var(--line);}
+  nav .wrap{display:flex; align-items:center; justify-content:space-between; padding:18px 32px;}
+  .brand{font-family:'Fraunces', serif; font-weight:700; font-size:1.2rem;}
+  .navlinks{display:flex; align-items:center; gap:30px; font-size:0.92rem;}
+  .navlinks a{text-decoration:none; color:var(--ink-soft); transition:color .15s ease;}
+  .navlinks a:hover, .navlinks a:focus-visible{color:var(--ink);}
+  .navlinks a:focus-visible{outline:2px solid var(--violet); outline-offset:3px; border-radius:2px;}
+  .nav-cta{background:var(--ink); color:#fff !important; padding:9px 18px; border-radius:8px; font-size:0.85rem; font-weight:500;}
+  .nav-cta:hover{background:var(--violet);}
+
+  /* hero */
+  header.hero{padding:96px 0 80px;}
+  .eyebrow{font-family:'Space Mono',monospace; font-size:0.8rem; color:var(--magenta); display:flex; align-items:center; gap:8px; margin-bottom:20px;}
+  .eyebrow .dot{width:7px; height:7px; border-radius:50%; background:var(--magenta); animation:pulse 2.4s infinite;}
+  @keyframes pulse{0%,100%{opacity:1;}50%{opacity:0.3;}}
+  .hero h1{font-size:3.4rem; line-height:1.1; max-width:780px; margin-bottom:22px;}
+  .hero p.lead{font-size:1.15rem; color:var(--ink-soft); max-width:560px; line-height:1.6; margin-bottom:36px;}
+  .cta-row{display:flex; gap:14px; flex-wrap:wrap; margin-bottom:54px;}
+  .btn{font-size:0.92rem; font-weight:600; padding:14px 24px; border-radius:9px; text-decoration:none; display:inline-flex; align-items:center; gap:8px; transition:transform .15s ease, box-shadow .15s ease;}
+  .btn:focus-visible{outline:2px solid var(--violet); outline-offset:2px;}
+  .btn-solid{background:var(--ink); color:#fff; box-shadow:var(--shadow);}
+  .btn-solid:hover{transform:translateY(-2px); background:var(--violet); box-shadow:var(--shadow-lift);}
+  .btn-ghost{background:transparent; border:1.5px solid var(--line); color:var(--ink);}
+  .btn-ghost:hover{transform:translateY(-2px); border-color:var(--violet); color:var(--violet);}
+
+  .stat-row{display:flex; gap:40px; flex-wrap:wrap; padding-top:30px; border-top:1px solid var(--line);}
+  .stat b{display:block; font-family:'Fraunces',serif; font-size:1.6rem; font-weight:700; color:var(--violet);}
+  .stat span{font-size:0.85rem; color:var(--ink-soft);}
+
+  hr.divider{border:none; border-top:1px solid var(--line); margin:0;}
+  section{padding:80px 0;}
+  .section-head{margin-bottom:48px; max-width:640px;}
+  .section-head .mono{color:var(--magenta); font-size:0.82rem; display:block; margin-bottom:10px;}
+  .section-head h2{font-size:2.1rem;}
+  .section-head p{color:var(--ink-soft); margin-top:12px; line-height:1.6;}
+
+  /* about */
+  .about-grid{display:grid; grid-template-columns:0.85fr 1.4fr; gap:60px; align-items:start;}
+  .avatar-circle{width:108px; height:108px; border-radius:50%; background:linear-gradient(135deg, var(--violet), var(--magenta)); display:flex; align-items:center; justify-content:center; color:#fff; font-family:'Fraunces',serif; font-size:2rem; font-weight:700; margin-bottom:18px;}
+  .about-text p{line-height:1.75; color:var(--ink-soft); font-size:1.02rem; margin-bottom:18px;}
+  .about-text strong{color:var(--ink);}
+  .beyond{display:flex; gap:10px; flex-wrap:wrap; margin-top:20px;}
+  .pill{font-size:0.82rem; background:var(--violet-soft); color:var(--violet); padding:8px 14px; border-radius:20px; font-weight:500;}
+
+  /* projects */
+  .proj-grid{display:grid; grid-template-columns:repeat(2, 1fr); gap:24px;}
+  .proj-card{background:var(--bg-soft); border:1px solid var(--line); border-radius:14px; padding:28px; transition:transform .2s ease, box-shadow .2s ease, border-color .2s ease;}
+  .proj-card:hover{transform:translateY(-4px); box-shadow:var(--shadow-lift); border-color:transparent;}
+  .proj-top{display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:14px;}
+  .proj-status{font-family:'Space Mono',monospace; font-size:0.7rem; padding:4px 10px; border-radius:20px; background:var(--violet-soft); color:var(--violet); white-space:nowrap;}
+  .proj-card h3{font-size:1.25rem; margin-bottom:8px;}
+  .proj-card p{color:var(--ink-soft); font-size:0.93rem; line-height:1.6; margin:0 0 16px;}
+  .tags{display:flex; gap:6px; flex-wrap:wrap; margin-bottom:18px;}
+  .tag{font-family:'Space Mono',monospace; font-size:0.68rem; background:#fff; border:1px solid var(--line); padding:4px 10px; border-radius:6px; color:var(--ink-soft);}
+  .proj-link{font-size:0.88rem; text-decoration:none; color:var(--violet); font-weight:600;}
+  .proj-link:hover{color:var(--magenta);}
+
+  .also-row{display:flex; gap:16px; margin-top:24px; flex-wrap:wrap;}
+  .also-chip{flex:1; min-width:220px; border:1px solid var(--line); border-radius:10px; padding:16px 18px; font-size:0.85rem; color:var(--ink-soft);}
+  .also-chip b{display:block; color:var(--ink); font-family:'Fraunces',serif; font-size:0.98rem; margin-bottom:3px; font-weight:600;}
+
+  /* stack */
+  .stack-grid{display:grid; grid-template-columns:repeat(4,1fr); gap:14px;}
+  .stack-item{border:1px solid var(--line); border-radius:10px; padding:16px; text-align:center; font-size:0.85rem; font-weight:500; transition:border-color .15s ease, transform .15s ease;}
+  .stack-item:hover{border-color:var(--violet); transform:translateY(-2px);}
+
+  /* services */
+  .serv-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:24px;}
+  .serv-card{border:1px solid var(--line); border-radius:14px; padding:30px;}
+  .serv-card .num{font-family:'Space Mono',monospace; font-size:0.78rem; color:var(--magenta); display:block; margin-bottom:14px;}
+  .serv-card h3{font-size:1.15rem; margin-bottom:10px;}
+  .serv-card p{color:var(--ink-soft); font-size:0.9rem; line-height:1.6; margin:0;}
+
+  /* contact */
+  .contact-panel{background:linear-gradient(120deg, var(--violet), var(--magenta)); border-radius:20px; padding:54px 50px; color:#fff; display:grid; grid-template-columns:1.2fr 0.8fr; gap:40px; align-items:center;}
+  .contact-panel h2{color:#fff; font-size:2rem; margin-bottom:14px;}
+  .contact-panel p{opacity:0.9; line-height:1.6; margin-bottom:0; max-width:440px;}
+  .contact-links{display:flex; flex-direction:column; gap:14px;}
+  .contact-link{display:flex; align-items:center; gap:10px; text-decoration:none; color:#fff; font-size:0.95rem; font-weight:500; background:rgba(255,255,255,0.14); padding:13px 18px; border-radius:9px; transition:background .15s ease;}
+  .contact-link:hover{background:rgba(255,255,255,0.26);}
+  .contact-link .label{font-family:'Space Mono',monospace; font-size:0.7rem; opacity:0.75; width:54px; flex-shrink:0;}
+
+  footer{padding:36px 0; text-align:center;}
+  footer p{font-family:'Space Mono',monospace; font-size:0.78rem; color:var(--ink-soft); margin:0;}
+
+  @media (max-width: 860px){
+    .hero h1{font-size:2.3rem;}
+    .about-grid, .proj-grid, .serv-grid{grid-template-columns:1fr;}
+    .stack-grid{grid-template-columns:repeat(2,1fr);}
+    .contact-panel{grid-template-columns:1fr; padding:38px 28px;}
+    .navlinks{display:none;}
+    .stat-row{gap:24px;}
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="wrap">
+    <div class="brand">emaancodes</div>
+    <div class="navlinks">
+      <a href="#about">about</a>
+      <a href="#work">work</a>
+      <a href="#stack">stack</a>
+      <a href="#services">services</a>
+      <a href="https://www.fiverr.com/users/emaanfatima03/seller_dashboard" target="_blank" rel="noopener" class="nav-cta">Hire me on Fiverr</a>
+    </div>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="wrap">
+    <span class="eyebrow"><span class="dot"></span>OPEN FOR FREELANCE & FULL-TIME WORK</span>
+    <h1>I build full web products — <span class="accent">code, design, and the brand</span> around them.</h1>
+    <p class="lead">Web & app developer based in Pakistan. I take projects from idea to a live, working product — Django backends, clean interfaces, and deployment, end to end.</p>
+    <div class="cta-row">
+      <a class="btn btn-solid" href="https://www.fiverr.com/users/emaanfatima03/seller_dashboard" target="_blank" rel="noopener">Hire me on Fiverr →</a>
+      <a class="btn btn-ghost" href="#contact">Get in touch</a>
+    </div>
+    <div class="stat-row">
+      <div class="stat"><b>4+</b><span>products shipped</span></div>
+      <div class="stat"><b>Django</b><span>primary stack</span></div>
+      <div class="stat"><b>PK</b><span>based, remote-friendly</span></div>
+    </div>
+  </div>
+</header>
+
+<hr class="divider">
+
+<section id="about">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="mono">ABOUT ME</span>
+      <h2>Full-stack developer, Python & Django focused.</h2>
+    </div>
+    <div class="about-grid">
+      <div>
+        <div class="avatar-circle">E</div>
+      </div>
+      <div class="about-text">
+        <p>I am a Computer Science undergraduate at Asian University for Women, where I am pursuing my degree on a full scholarship. My work focuses on full-stack web development, with particular expertise in Python and Django.</p>
+        <p>I specialize in building complete, production-ready applications — managing the entire development lifecycle from system design and backend architecture to user interface implementation and deployment. My project portfolio includes a restaurant ordering platform with integrated cart and admin functionality, a comprehensive school management system, and a multi-themed digital journaling application.</p>
+        <p>I bring a strong attention to detail, a methodical approach to problem-solving, and the ability to independently deliver functional software from concept to production.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<section id="work">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="mono">WORK</span>
+      <h2>Things I've built and shipped.</h2>
+    </div>
+    <div class="proj-grid">
+
+      <div class="proj-card">
+        <div class="proj-top"><h3>Four Restaurant</h3><span class="proj-status">live</span></div>
+        <p>A full Django replica of a real fast-food spot — custom cart system, an admin portal built from scratch, and a premium UI that doesn't feel like a template.</p>
+        <div class="tags"><span class="tag">django</span><span class="tag">python</span><span class="tag">cart system</span><span class="tag">admin portal</span></div>
+        <a class="proj-link" href="https://emaanfatimasoomro.pythonanywhere.com" target="_blank" rel="noopener">View project →</a>
+      </div>
+
+      <div class="proj-card">
+        <div class="proj-top"><h3>The Golden Academy</h3><span class="proj-status">for sale</span></div>
+        <p>A complete school management system — student logins, private dashboards, timetables, results, and fees. Built to sell to schools across the US and UK.</p>
+        <div class="tags"><span class="tag">django</span><span class="tag">saas</span><span class="tag">multi-user</span></div>
+        <a class="proj-link" href="https://emaan1111.pythonanywhere.com" target="_blank" rel="noopener">View project →</a>
+      </div>
+
+      <div class="proj-card">
+        <div class="proj-top"><h3>Bloom</h3><span class="proj-status">personal</span></div>
+        <p>A digital journaling platform packed into a single HTML file — eight aesthetic themes, rich writing features, zero backend required.</p>
+        <div class="tags"><span class="tag">javascript</span><span class="tag">single-file</span><span class="tag">ui design</span></div>
+        <a class="proj-link" href="#contact">Ask for a demo →</a>
+      </div>
+
+    </div>
+
+    <div class="also-row">
+      <div class="also-chip"><b>Wellness Compass</b>a habit & wellness tracker built on Replit.</div>
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<section id="stack">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="mono">STACK</span>
+      <h2>What I reach for.</h2>
+    </div>
+    <div class="stack-grid">
+      <div class="stack-item">Python / Django</div>
+      <div class="stack-item">JavaScript</div>
+      <div class="stack-item">HTML / CSS</div>
+      <div class="stack-item">Git & GitHub</div>
+      <div class="stack-item">PythonAnywhere</div>
+      <div class="stack-item">UI / UX Design</div>
+      <div class="stack-item">Brand Design</div>
+      <div class="stack-item">SQLite / Postgres</div>
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<section id="services">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="mono">SERVICES</span>
+      <h2>How I can help.</h2>
+    </div>
+    <div class="serv-grid">
+      <div class="serv-card">
+        <span class="num mono">01</span>
+        <h3>Full web apps, built & deployed</h3>
+        <p>From idea to a live, working product — backend, frontend, hosting, and the admin tools you'll actually use day to day.</p>
+      </div>
+      <div class="serv-card">
+        <span class="num mono">02</span>
+        <h3>Management systems for schools & small businesses</h3>
+        <p>Logins, dashboards, records, fees — software that replaces spreadsheets and actually fits how your team works.</p>
+      </div>
+      <div class="serv-card">
+        <span class="num mono">03</span>
+        <h3>UI design & frontend implementation</h3>
+        <p>Interfaces that are clean, fast, and actually usable — designed and built by the same person, so nothing gets lost in handoff.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<section id="contact">
+  <div class="wrap">
+    <div class="contact-panel">
+      <div>
+        <h2>Let's make something worth shipping.</h2>
+        <p>Whether it's a freelance project, a full-time role, or a custom build — I read everything. Fastest way to reach me is Fiverr or email.</p>
+      </div>
+      <div class="contact-links">
+        <a class="contact-link" href="https://www.fiverr.com/users/emaanfatima03/seller_dashboard" target="_blank" rel="noopener"><span class="label">FIVERR</span> emaanfatima03</a>
+        <a class="contact-link" href="mailto:emaanfatimasoomro@gmail.com"><span class="label">EMAIL</span> emaanfatimasoomro@gmail.com</a>
+        <a class="contact-link" href="https://github.com/EmaanFatimaSoomro" target="_blank" rel="noopener"><span class="label">GITHUB</span> EmaanFatimaSoomro</a>
+        <a class="contact-link" href="tel:+923093282021"><span class="label">PHONE</span> +92 309 3282021</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <p>// built by Emaan — based in Pakistan, working with clients worldwide.</p>
+</footer>
+
+</body>
+</html>
