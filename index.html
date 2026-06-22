@@ -45,6 +45,17 @@
   .nav-cta{background:var(--ink); color:#fff !important; padding:9px 18px; border-radius:8px; font-size:0.85rem; font-weight:500;}
   .nav-cta:hover{background:var(--violet);}
 
+  .hamburger{display:none; flex-direction:column; justify-content:center; gap:5px; width:34px; height:34px; background:none; border:none; cursor:pointer; padding:0;}
+  .hamburger span{display:block; width:100%; height:2px; background:var(--ink); border-radius:2px; transition:transform .2s ease, opacity .2s ease;}
+  .hamburger[aria-expanded="true"] span:nth-child(1){transform:translateY(7px) rotate(45deg);}
+  .hamburger[aria-expanded="true"] span:nth-child(2){opacity:0;}
+  .hamburger[aria-expanded="true"] span:nth-child(3){transform:translateY(-7px) rotate(-45deg);}
+  .mobile-menu{display:none; flex-direction:column; gap:4px; padding:0 20px 18px; border-bottom:1px solid var(--line);}
+  .mobile-menu.open{display:flex;}
+  .mobile-menu a{text-decoration:none; color:var(--ink-soft); font-size:0.98rem; padding:12px 4px; border-bottom:1px solid var(--line);}
+  .mobile-menu a:last-child{border-bottom:none;}
+  .mobile-menu .nav-cta{text-align:center; color:#fff !important;}
+
   /* hero */
   header.hero{padding:96px 0 80px;}
   .eyebrow{font-family:'Space Mono',monospace; font-size:0.8rem; color:var(--magenta); display:flex; align-items:center; gap:8px; margin-bottom:20px;}
@@ -121,12 +132,39 @@
   footer p{font-family:'Space Mono',monospace; font-size:0.78rem; color:var(--ink-soft); margin:0;}
 
   @media (max-width: 860px){
-    .hero h1{font-size:2.3rem;}
-    .about-grid, .proj-grid, .serv-grid{grid-template-columns:1fr;}
-    .stack-grid{grid-template-columns:repeat(2,1fr);}
-    .contact-panel{grid-template-columns:1fr; padding:38px 28px;}
+    .wrap{padding:0 20px;}
+    nav .wrap{padding:14px 20px;}
     .navlinks{display:none;}
-    .stat-row{gap:24px;}
+    .hamburger{display:flex;}
+    header.hero{padding:56px 0 50px;}
+    .hero h1{font-size:2.2rem; line-height:1.16;}
+    .hero p.lead{font-size:1.02rem;}
+    .cta-row .btn{flex:1 1 auto; justify-content:center; text-align:center;}
+    .stat-row{gap:22px; flex-wrap:wrap;}
+    section{padding:56px 0;}
+    .section-head h2{font-size:1.7rem;}
+    .about-grid, .proj-grid, .serv-grid{grid-template-columns:1fr;}
+    .avatar-circle{margin-left:auto; margin-right:auto;}
+    .stack-grid{grid-template-columns:repeat(2,1fr);}
+    .contact-panel{grid-template-columns:1fr; padding:36px 26px; border-radius:16px;}
+    .contact-panel h2{font-size:1.6rem;}
+  }
+
+  @media (max-width: 480px){
+    .wrap{padding:0 16px;}
+    .brand{font-size:1.05rem;}
+    .hero h1{font-size:1.8rem;}
+    .lead{font-size:0.96rem;}
+    .stat-row{gap:18px 28px;}
+    .stat b{font-size:1.3rem;}
+    .cta-row{flex-direction:column;}
+    .cta-row .btn{width:100%;}
+    .proj-card{padding:22px;}
+    .stack-grid{grid-template-columns:1fr 1fr; gap:10px;}
+    .stack-item{padding:13px; font-size:0.8rem;}
+    .also-row{flex-direction:column;}
+    .contact-panel{padding:28px 20px;}
+    .contact-link{font-size:0.88rem; padding:12px 14px;}
   }
 </style>
 </head>
@@ -142,6 +180,16 @@
       <a href="#services">services</a>
       <a href="https://www.fiverr.com/users/emaanfatima03/seller_dashboard" target="_blank" rel="noopener" class="nav-cta">Hire me on Fiverr</a>
     </div>
+    <button class="hamburger" id="hamburgerBtn" aria-label="Open menu" aria-expanded="false" aria-controls="mobileMenu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="#about">about</a>
+    <a href="#work">work</a>
+    <a href="#stack">stack</a>
+    <a href="#services">services</a>
+    <a href="https://www.fiverr.com/users/emaanfatima03/seller_dashboard" target="_blank" rel="noopener" class="nav-cta" style="margin-top:8px;">Hire me on Fiverr</a>
   </div>
 </nav>
 
@@ -217,7 +265,7 @@
     </div>
 
     <div class="also-row">
-      <div class="also-chip"><b>Wellness Compass</b>a habit & wellness tracker built on Replit.</div>
+      <div class="also-chip"><b>Wellness Compass</b> a habit & wellness tracker built on Replit.</div>
     </div>
   </div>
 </section>
@@ -294,5 +342,19 @@
   <p>// built by Emaan — based in Pakistan, working with clients worldwide.</p>
 </footer>
 
+<script>
+  const hamburgerBtn = document.getElementById('hamburgerBtn');
+  const mobileMenu = document.getElementById('mobileMenu');
+  hamburgerBtn.addEventListener('click', () => {
+    const isOpen = mobileMenu.classList.toggle('open');
+    hamburgerBtn.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+  });
+  mobileMenu.querySelectorAll('a').forEach(link => {
+    link.addEventListener('click', () => {
+      mobileMenu.classList.remove('open');
+      hamburgerBtn.setAttribute('aria-expanded', 'false');
+    });
+  });
+</script>
 </body>
 </html>
