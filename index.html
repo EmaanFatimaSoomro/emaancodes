@@ -122,11 +122,37 @@
   .serv-card p{color:var(--ink-soft); font-size:0.9rem; line-height:1.6; margin:0;}
 
   /* contact */
-  .contact-panel{background:linear-gradient(120deg, var(--violet), var(--magenta)); border-radius:20px; padding:54px 50px; color:#fff; display:grid; grid-template-columns:1.2fr 0.8fr; gap:40px; align-items:center;}
+  .contact-panel{
+    background:linear-gradient(120deg, var(--violet), var(--magenta));
+    border-radius:20px;
+    padding:54px 50px;
+    color:#fff;
+    display:grid;
+    grid-template-columns:1.2fr 0.8fr;
+    gap:40px;
+    align-items:center;
+    min-width:0;
+    max-width:100%;
+  }
   .contact-panel h2{color:#fff; font-size:2rem; margin-bottom:14px;}
   .contact-panel p{opacity:0.9; line-height:1.6; margin-bottom:0; max-width:440px;}
-  .contact-links{display:flex; flex-direction:column; gap:14px;}
-  .contact-link{display:flex; align-items:center; gap:10px; text-decoration:none; color:#fff; font-size:0.95rem; font-weight:500; background:rgba(255,255,255,0.14); padding:13px 18px; border-radius:9px; transition:background .15s ease;}
+  .contact-links{display:flex; flex-direction:column; gap:14px; min-width:0;}
+  .contact-link{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    text-decoration:none;
+    color:#fff;
+    font-size:0.95rem;
+    font-weight:500;
+    background:rgba(255,255,255,0.14);
+    padding:13px 18px;
+    border-radius:9px;
+    transition:background .15s ease;
+    min-width:0;
+    overflow-wrap:anywhere;
+    word-break:break-word;
+  }
   .contact-link:hover{background:rgba(255,255,255,0.26);}
   .contact-link .label{font-family:'Space Mono',monospace; font-size:0.7rem; opacity:0.75; width:54px; flex-shrink:0;}
 
@@ -148,8 +174,7 @@
     .about-grid, .proj-grid, .serv-grid{grid-template-columns:1fr;}
     .avatar-circle{margin-left:auto; margin-right:auto;}
     .stack-grid{grid-template-columns:repeat(2,1fr);}
-    .contact-panel{grid-template-columns:1fr; padding:36px 26px; border-radius:16px;}
-    .contact-panel h2{font-size:1.6rem;}
+    .contact-panel{grid-template-columns:1fr; padding:36px 26px; border-radius:16px; min-width:0;}
   }
 
   @media (max-width: 480px){
@@ -166,7 +191,7 @@
     .stack-item{padding:13px; font-size:0.8rem;}
     .also-row{flex-direction:column;}
     .contact-panel{padding:28px 20px;}
-    .contact-link{font-size:0.88rem; padding:12px 14px;}
+    .contact-link{font-size:0.88rem; padding:12px 14px; flex-wrap:wrap;}
   }
 </style>
 </head>
